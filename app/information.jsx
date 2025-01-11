@@ -8,7 +8,7 @@ const Information = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Welcome to the Info Page!</Text>
-      <Button title="Go Back" onPress={() => router.back()} />
+      <Button title="Go Back" color="rgb(255, 204, 0)" onPress={() => router.back()} />
     </View>
   );
 };
@@ -18,11 +18,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
   },
   text: {
-    fontSize: 18,
-    color: '#333',
+    fontSize: 20, 
+    color: 'rgb(30, 27, 22)', 
+    fontWeight: 'bold', 
+    marginBottom: 20, 
   },
 });
 
