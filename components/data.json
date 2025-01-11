@@ -1,0 +1,11 @@
+{
+    "categories": ["Work", "Personal", "Important"],
+    "notes": [
+      { "id": 1, "title": "Meeting Notes", "content": "Discuss project progress.", "category": "Work" },
+      { "id": 2, "title": "Birthday Plans", "content": "Plan for birthday party.", "category": "Personal" },
+      { "id": 3, "title": "Shopping List", "content": "Milk, Bread, Eggs", "category": "Personal" },
+      { "id": 4, "title": "Project Deadline", "content": "Submit report by end of the week.", "category": "Work" },
+      { "id": 5, "title": "Important Documents", "content": "Review the contract.", "category": "Important" }
+    ]
+  }
+  
