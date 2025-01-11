@@ -25,12 +25,11 @@ export default function CustomizeFont() {
     }
   };
 
-  // Handle font size and line height button clicks
   const handleFontSizeChange = (delta) => {
     const newSize = fontSettings.fontSize + delta;
     if (newSize >= 12 && newSize <= 70) {
       updateFontSettings({ fontSize: newSize });
-      setFontSizeInput(newSize.toString());  // Update text field value
+      setFontSizeInput(newSize.toString());  
     }
   };
 
@@ -38,7 +37,7 @@ export default function CustomizeFont() {
     const newHeight = fontSettings.lineHeight + delta;
     if (newHeight >= 16 && newHeight <= 70) {
       updateFontSettings({ lineHeight: newHeight });
-      setLineHeightInput(newHeight.toString());  // Update text field value
+      setLineHeightInput(newHeight.toString()); 
     }
   };
 
@@ -100,15 +99,15 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    alignItems: 'center',  // Ensures all items are vertically centered
+    alignItems: 'center', 
     marginBottom: 30,
   },
   button: {
-    width: 50,            // Fixed width
-    height: 50,           // Fixed height for the button
-    borderRadius: 25,     // Circular button
-    justifyContent: 'center',  // Centers text inside the button
-    alignItems: 'center',      // Centers text inside the button
+    width: 50, 
+    height: 50,           
+    borderRadius: 25,     
+    justifyContent: 'center',  
+    alignItems: 'center',     
     marginHorizontal: 10,
   },
   buttonText: {
@@ -117,12 +116,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   input: {
-    height: 50,           // Matches button height
+    height: 50,          
     borderWidth: 1,
-    borderRadius: 25,     // Rounded corners to match buttons
-    paddingHorizontal: 15,  // Adjust padding for better alignment
-    flex: 1,              // Makes the input take up the remaining space
-    textAlign: 'center',  // Centers text inside the input field
-    marginBottom: 0,      // Ensures no extra margin is added at the bottom
+    borderRadius: 25,  
+    paddingHorizontal: 15, 
+    flex: 1,             
+    textAlign: 'center',  
+    marginBottom: 0,     
   },
 });

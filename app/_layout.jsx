@@ -5,9 +5,9 @@ import  { FontProvider } from "@/components/FontContext";
 
 const theme = {
   "colors": {
-    "primary": "rgb(255, 204, 92)", // Warm yellow, still bright but not too bold
-    "onPrimary": "rgb(0, 0, 0)", // Black text on yellow for readability
-    "primaryContainer": "rgb(255, 239, 170)", // Light yellow for containers
+    "primary": "rgb(255, 204, 92)", 
+    "onPrimary": "rgb(0, 0, 0)", 
+    "primaryContainer": "rgb(255, 239, 170)", 
     "onPrimaryContainer": "rgb(38, 26, 0)", 
     "secondary": "rgb(116, 91, 0)", 
     "onSecondary": "rgb(255, 255, 255)", 

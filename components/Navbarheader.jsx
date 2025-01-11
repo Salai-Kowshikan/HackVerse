@@ -11,7 +11,7 @@ const Navbarheader = () => {
   };
 
   return (
-    <Appbar.Header style={{ backgroundColor: 'rgb(255, 204, 92)' }}> 
+    <Appbar.Header style={{ backgroundColor: 'rgb(255, 204, 0)' }}> 
       {pathname !== '/' && <Appbar.BackAction icon="camera-plus" onPress={() => router.back()} />}
       
       <Appbar.Content title="Mithran" titleStyle={{ color: 'rgb(30, 27, 22)' }} /> 
