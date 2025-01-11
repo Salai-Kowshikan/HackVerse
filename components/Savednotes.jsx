@@ -23,8 +23,8 @@ const SavedNotes = () => {
       const response = await db.post('/explain', {
         user_message: noteContent
       });
-      setExplanation(response.data.explanation);  
-      console.log(response.data.explanation);
+      setExplanation(response.data.response.answer);  
+      console.log(response.data.response.answer);
     } catch (error) {
       console.error("Error explaining the note:", error);
     }
