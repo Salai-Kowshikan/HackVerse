@@ -133,6 +133,24 @@ def get_record(record_id):
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/noteUpdate/<record_id>', methods=['PUT'])
+def update_note(record_id):
+    data = request.get_json()
+    new_text = data.get('text')
+    if not new_text:
+        return jsonify({"error": "No text provided"}), 400
+    
+    try:
+        result = db['Records'].update_one(
+            {"_id": ObjectId(record_id)},
+            {"$set": {"text": new_text}}
+        )
+        if result.matched_count == 0:
+            return jsonify({"error": "Record not found"}), 404
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == '__main__':
     app.config['DEBUG'] = False
     app.run(host='0.0.0.0', port=5000)

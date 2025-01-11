@@ -3,7 +3,15 @@ import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import db from "@/api/api";
 import * as Speech from "expo-speech";
-import { Button, Surface, Modal, Portal, Text, FAB } from "react-native-paper";
+import {
+  Button,
+  Surface,
+  Modal,
+  Portal,
+  Text,
+  FAB,
+  Snackbar,
+} from "react-native-paper";
 import { useFontSettings } from "@/components/FontContext";
 import Markdown from "react-native-markdown-display";
 
@@ -14,6 +22,7 @@ function NotePage() {
   const [note, setNote] = useState();
   const [visible, setVisible] = useState(false);
   const [content, setContent] = useState();
+  const [snack, setSnack] = useState(false);
 
   const fetchNote = async () => {
     const response = await db.get(`/record/${id}`);
@@ -39,7 +48,8 @@ function NotePage() {
   const check = async () => {
     setLoading(true);
     const response = await db.post(`/check`, { user_message: note.text });
-    setNote({...note,text:response.data.response.answer})
+    setNote({ ...note, text: response.data.response.answer });
+    setSnack(true);
     setLoading(false);
   };
 
@@ -64,12 +74,21 @@ function NotePage() {
         <Button onPress={recommend}> Recommend resources </Button>
         <Button onPress={check}> Spell Check </Button>
       </Surface>
+
       <ExplainModal
         visible={visible}
         setVisible={setVisible}
         content={content}
         setContent={setContent}
       />
+      {note && (
+        <SaveChanges
+          snack={snack}
+          setSnack={setSnack}
+          content={note.text}
+          id={note._id}
+        />
+      )}
     </View>
   );
 }
@@ -153,6 +172,32 @@ const ExplainModal = ({ visible, setVisible, content, setContent }) => {
   );
 };
 
+const SaveChanges = ({ snack, setSnack, content, id }) => {
+  const save = async () => {
+    setLoading(true);
+    const response = await db.put(`/noteUpdate/${id}`, {
+      text: content,
+    });
+    setLoading(false);
+  };
+
+  return (
+    <Snackbar
+      visible={snack}
+      onDismiss={() => setSnack(false)}
+      action={{
+        label: "Save",
+        onPress: () => {
+          save();
+        },
+      }}
+      style={styles.snackbar}
+    >
+      Save changes?
+    </Snackbar>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -176,6 +221,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
     color: "#333",
+  },
+  snackbar: {
+    position: "absolute",
+    bottom: 50,
+    left: 20,
   },
   text: {
     fontSize: 16,
