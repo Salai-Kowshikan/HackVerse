@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { Avatar, Button, Card, Text } from 'react-native-paper';
 import data from './data.json';
-import axios from 'axios';
+import db from '@/api/api'
 import { useFontSettings } from '@/components/FontContext';
 
 const SavedNotes = () => {
@@ -20,7 +20,7 @@ const SavedNotes = () => {
 
   const handleExplainClick = async (noteContent) => {
     try {
-      const response = await axios.post('http://127.0.0.1:5000/explain', {
+      const response = await db.post('/explain', {
         user_message: noteContent
       });
       setExplanation(response.data.explanation);  
