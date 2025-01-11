@@ -20,7 +20,7 @@ def get_translation_response(user_message, src="en", tar="ta"):
     return text
 
 user_message = "பலத்த மழை மற்றும் பலத்த காற்று இருந்தபோதிலும், உறுதியான மலையேறுபவர்கள் செங்குத்தான மலைப்பாதையில் தங்கள் பயணத்தைத் தொடர்ந்தனர், மூச்சடைக்கக்கூடிய காட்சிகள் மற்றும் நிலப்பரப்பைக் குறிக்கும் காட்டுப்பூக்களின் துடிப்பான வண்ணங்களைக் கண்டு ஆச்சரியப்பட்டனர்."
-src = "ta"
-tar = "en"
+src = "en"
+tar = "ta"
 response = get_translation_response(user_message, src, tar)
 print("Response:", response)
