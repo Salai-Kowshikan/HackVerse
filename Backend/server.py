@@ -8,6 +8,8 @@ import tempfile
 from services.Explain import explain
 from services.Translate import translate
 from services.Textract import textract, extract_text, crop_largest_rectangle
+from services.Recommendation import recommend
+from services.SpellCheck import check
 
 load_dotenv()
 
@@ -36,6 +38,28 @@ def explain_route():
         return jsonify({"error": "No user_message provided"}), 400
     
     response_text = explain(user_message)
+    return jsonify({"response": response_text})
+
+@app.route('/recommend', methods=['POST'])
+def recommend_route():
+    print("data send")
+    data = request.get_json()
+    user_message = data.get('user_message')
+    if not user_message:
+        return jsonify({"error": "No user_message provided"}), 400
+    
+    response_text = recommend(user_message)
+    return jsonify({"response": response_text})
+
+@app.route('/check', methods=['POST'])
+def check_route():
+    print("data send")
+    data = request.get_json()
+    user_message = data.get('user_message')
+    if not user_message:
+        return jsonify({"error": "No user_message provided"}), 400
+    
+    response_text = check(user_message)
     return jsonify({"response": response_text})
 
 @app.route('/translate', methods=['POST'])

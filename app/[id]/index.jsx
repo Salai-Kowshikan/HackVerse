@@ -3,12 +3,13 @@ import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import db from "@/api/api";
 import * as Speech from "expo-speech";
-import { Button, Surface, Modal, Portal, Text,FAB } from "react-native-paper";
+import { Button, Surface, Modal, Portal, Text, FAB } from "react-native-paper";
 import { useFontSettings } from "@/components/FontContext";
+import Markdown from "react-native-markdown-display";
 
 function NotePage() {
   const { id } = useLocalSearchParams();
- 
+
   const { setLoading } = useFontSettings();
   const [note, setNote] = useState();
   const [visible, setVisible] = useState(false);
@@ -27,6 +28,21 @@ function NotePage() {
     setLoading(false);
   };
 
+  const recommend = async () => {
+    setLoading(true);
+    const response = await db.post(`/recommend`, { user_message: note.text });
+    setContent(response.data.response.answer);
+    setVisible(true);
+    setLoading(false);
+  };
+
+  const check = async () => {
+    setLoading(true);
+    const response = await db.post(`/check`, { user_message: note.text });
+    setNote({...note,text:response.data.response.answer})
+    setLoading(false);
+  };
+
   useEffect(() => {
     fetchNote();
   }, []);
@@ -41,10 +57,12 @@ function NotePage() {
               style={styles.image}
             />
             <Text style={styles.title}>{note.title}</Text>
-            <Text style={styles.text}>{note.text}</Text>
+            <Markdown style={styles.text}>{note.text}</Markdown>
           </>
         )}
         <Button onPress={explain}> Explain </Button>
+        <Button onPress={recommend}> Recommend resources </Button>
+        <Button onPress={check}> Spell Check </Button>
       </Surface>
       <ExplainModal
         visible={visible}
@@ -59,7 +77,12 @@ function NotePage() {
 const ExplainModal = ({ visible, setVisible, content, setContent }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const { setLoading, language } = useFontSettings();
-  const containerStyle = { backgroundColor: "white", padding: 25, margin: 25, maxHeight: "75%" };
+  const containerStyle = {
+    backgroundColor: "white",
+    padding: 25,
+    margin: 25,
+    maxHeight: "75%",
+  };
 
   const translate = async () => {
     setLoading(true);
@@ -96,16 +119,15 @@ const ExplainModal = ({ visible, setVisible, content, setContent }) => {
         visible={visible}
         onDismiss={() => {
           setVisible(false);
-          stopText(); // Stop TTS when modal is dismissed
+          stopText();
         }}
         contentContainerStyle={containerStyle}
       >
         <ScrollView>
-          <Text>{content}</Text>
+          <Markdown>{content}</Markdown>
         </ScrollView>
         <Button onPress={translate}>Translate!</Button>
 
-        {/* FAB buttons for text-to-speech */}
         <View style={styles.fabContainer}>
           <FAB
             icon="play"
@@ -130,7 +152,6 @@ const ExplainModal = ({ visible, setVisible, content, setContent }) => {
     </Portal>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
