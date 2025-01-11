@@ -2,7 +2,7 @@ from groclake.modellake import ModelLake
 from dotenv import load_dotenv
 import os
 
-def explain(user_message):
+def check(user_message):
     load_dotenv()
     GROCLAKE_ACCOUNT_ID = os.getenv("GROCLAKE_ACCOUNT_ID")
     modellake = ModelLake()
@@ -10,7 +10,7 @@ def explain(user_message):
     chat_completion_request = {
         "groc_account_id": GROCLAKE_ACCOUNT_ID,
         "messages": [
-            {"role": "system", "content": "You are helping students with learning disabilities. Given the content, explain it in a way that is easy to understand. And format it nicely using markdown."},
+            {"role": "system", "content": "Fix the spelling and grammatical errors that might be present in the text. It is from OCR and may contain unrelated words. Also add Markdown for better formatting."},
             {"role": "user", "content": user_message},
         ],
         "token_size": 500
