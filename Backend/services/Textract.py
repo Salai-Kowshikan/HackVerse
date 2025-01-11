@@ -2,15 +2,17 @@ import requests
 import time
 from dotenv import load_dotenv
 import os
+import cv2
+import numpy as np
+import base64
 
 load_dotenv()
-
 
 subscription_key = os.getenv("SUBSCRIPTION_KEY")
 endpoint = os.getenv("ENDPOINT")
 ocr_url = endpoint + "/vision/v3.2/read/analyze"
 
-def recognize_text_azure(image_path):
+def textract(image_path):
     headers = {
         'Ocp-Apim-Subscription-Key': subscription_key,
         'Content-Type': 'application/octet-stream'
@@ -48,9 +50,29 @@ def extract_text(result):
                 text.append(line['text'])
     return "\n".join(text)
 
+def crop_largest_rectangle(image_path):
+    image = cv2.imread(image_path)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+    edged = cv2.Canny(blurred, 50, 150)
+
+    contours, _ = cv2.findContours(edged, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    largest_contour = max(contours, key=cv2.contourArea)
+
+    x, y, w, h = cv2.boundingRect(largest_contour)
+    cropped_image = image[y:y+h, x:x+w]
+
+    _, buffer = cv2.imencode('.jpg', cropped_image)
+    cropped_image_base64 = base64.b64encode(buffer).decode('utf-8')
+
+    return cropped_image_base64
+
 if __name__ == "__main__":
     image_path = 'Backend\\test3.jpg'
-    result = recognize_text_azure(image_path)
+    result = textract(image_path)
     extracted_text = extract_text(result)
     
     print("Extracted Text:\n", extracted_text)
+    
+    cropped_image_base64 = crop_largest_rectangle(image_path)
+    print("Cropped Image Base64:\n", cropped_image_base64)
