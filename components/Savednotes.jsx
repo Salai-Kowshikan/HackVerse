@@ -190,11 +190,15 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginBottom: 20,
     paddingHorizontal: 15,
+    paddingVertical: 8,
     alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
   },
   backButtonIcon: {
     fontSize: 20,
-    color: "white",
+    color: "black",
   },
   iconButton: {
     marginLeft: 10,
