@@ -6,7 +6,7 @@ import CustomizeFont from '@/components/CustomizeFont'
 import { View } from 'react-native';
 
 
-const MusicRoute = () => <View><Savednotes/> </View>;
+const MusicRoute = () => <Savednotes/>;
 const CameraRoute = () => <View><CameraScreen /></View>;
 const NotificationsRoute = () => <CustomizeFont/>;
 
