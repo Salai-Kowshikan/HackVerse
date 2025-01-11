@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
-import Camerascreen from '@/components/Camerascreen';
+import CameraScreen from '@/components/CameraScreen'
 import Savednotes from '@/components/Savednotes'
 import { View } from 'react-native';
 
 const MusicRoute = () => <View><Savednotes/> </View>;
+const CameraRoute = () => <View><CameraScreen /></View>;
 
-const AlbumsRoute = () =>  <Camerascreen/> ;
+// const AlbumsRoute = () =>  <Camerascreen/> ;
 
 
 const NotificationsRoute = () => <Text>Theme customization</Text>;
@@ -15,14 +16,14 @@ const Navbarbottom = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: 'music', title: 'Saved Notes', focusedIcon: 'content-save-all', unfocusedIcon: 'content-save-all-outline'},
-    { key: 'albums', title: 'Take Picture', focusedIcon: 'camera-plus',unfocusedIcon: 'camera-plus-outline' },
+    { key: 'camera', title: 'Take Picture', focusedIcon: 'camera-plus',unfocusedIcon: 'camera-plus-outline' },
 
     { key: 'notifications', title: 'Customize Theme', focusedIcon: 'format-font', unfocusedIcon: 'format-font' },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
     music: MusicRoute,
-    albums: AlbumsRoute,
+    camera: CameraRoute,
     notifications: NotificationsRoute,
   });
 

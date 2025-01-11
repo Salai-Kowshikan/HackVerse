@@ -1,10 +1,13 @@
-import React from 'react'
-import { Text } from 'react-native-paper'
+import React from "react";
+import { View } from "react-native";
+import { Text } from "react-native-paper";
 
 export default function Savednotes() {
   return (
     <>
-      <Text>hello</Text>
+      <View>
+        <Text>hello</Text>
+      </View>
     </>
-  )
+  );
 }
