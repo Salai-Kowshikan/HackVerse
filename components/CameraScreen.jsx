@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, Pressable } from 'react-native';
 import { Camera } from 'expo-camera';
 
-const CameraScreen = () => {
+const Camerascreen = () => {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const cameraRef = useRef(null);
@@ -38,6 +38,7 @@ const CameraScreen = () => {
   }
 
   return (
+    <>
     <View style={{ flex: 1 }}>
       <Camera style={{ flex: 1 }} type={type} ref={cameraRef}>
         <View
@@ -56,7 +57,8 @@ const CameraScreen = () => {
         </View>
       </Camera>
     </View>
+    </>
   );
 };
 
-export default CameraScreen;
+export default Camerascreen;

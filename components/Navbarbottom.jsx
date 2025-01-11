@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
-import CameraScreen from './CameraScreen';
+import Camerascreen from '@/components/Camerascreen';
+import Savednotes from '@/components/Savednotes'
+import { View } from 'react-native';
 
-const MusicRoute = () => <Text>Saved Notes</Text>;
+const MusicRoute = () => <View><Savednotes/> </View>;
 
-const AlbumsRoute = () => {
-  return <CameraScreen />;
-};
+const AlbumsRoute = () =>  <Camerascreen/> ;
 
 
 const NotificationsRoute = () => <Text>Theme customization</Text>;
