@@ -6,10 +6,6 @@ import { View } from 'react-native';
 
 const MusicRoute = () => <View><Savednotes/> </View>;
 const CameraRoute = () => <View><CameraScreen /></View>;
-
-// const AlbumsRoute = () =>  <Camerascreen/> ;
-
-
 const NotificationsRoute = () => <Text>Theme customization</Text>;
 
 const Navbarbottom = () => {

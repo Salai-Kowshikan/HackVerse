@@ -4,18 +4,16 @@ import {Button, Text} from "react-native-paper";
 import {StyleSheet, TouchableOpacity, View } from 'react-native';
 
 const Camerascreen = () => {
-  const [facing, setFacing] = useState('back');
+  const [facing, setFacing] = useState<CameraType>('back');
   const [permission, requestPermission] = useCameraPermissions();
 
   if (!permission) {
-    return <View>
-      <Text>
-        Work aaguthaa
-      </Text>
-    </View>;
+    // Camera permissions are still loading.
+    return <View />;
   }
 
   if (!permission.granted) {
+    // Camera permissions are not granted yet.
     return (
       <View style={styles.container}>
         <Text style={styles.message}>We need your permission to show the camera</Text>
