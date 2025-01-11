@@ -31,7 +31,7 @@ export default function CameraScreen() {
     
       try {
         const photoData = await cameraRef.current?.takePictureAsync(); // Ensure this is called on the camera instance
-        setPhoto(photoData.uri); // Set photo URI
+        setPhoto(photoData.uri);
       } catch (error) {
         console.error("Error taking picture:", error);
       }

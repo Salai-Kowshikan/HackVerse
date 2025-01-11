@@ -2,15 +2,16 @@ import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
 import CameraScreen from '@/components/CameraScreen'
 import Savednotes from '@/components/Savednotes'
+import CustomizeFont from '@/components/CustomizeFont'
 import { View } from 'react-native';
 
 
 const MusicRoute = () => <View><Savednotes/> </View>;
 const CameraRoute = () => <View><CameraScreen /></View>;
-const NotificationsRoute = () => <Text>Theme customization</Text>;
+const NotificationsRoute = () => <CustomizeFont/>;
 
 const Navbarbottom = () => {
-  
+
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: 'music', title: 'Saved Notes', focusedIcon: 'content-save-all', unfocusedIcon: 'content-save-all-outline'},
