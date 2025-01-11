@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
@@ -10,6 +11,7 @@ from services.Textract import textract, extract_text, crop_largest_rectangle
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)
 
 mongo_connection_string = os.getenv('MONGO_CONNECTION_STRING')
 if not mongo_connection_string:
@@ -61,6 +63,8 @@ def extract_route():
     if not title or not category:
         return jsonify({"error": "title and category must be provided"}), 400
     
+    print("Working on textract")
+    
     with tempfile.TemporaryDirectory() as tmpdirname:
         image_path = os.path.join(tmpdirname, image_file.filename)
         image_file.save(image_path)
@@ -77,7 +81,7 @@ def extract_route():
                 "image": cropped_image_base64
             }
             db['Records'].insert_one(record)
-            
+            print("textract completed")
             return
         except Exception as e:
             return jsonify({"error": str(e)}), 500
