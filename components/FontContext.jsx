@@ -12,8 +12,11 @@ export const FontProvider = ({ children }) => {
     setFontSettings((prev) => ({ ...prev, ...settings }));
   };
 
+  const [loading,setLoading] = useState(false);
+  const [language, setLanguage] = useState('ta')
+
   return (
-    <FontContext.Provider value={{ fontSettings, updateFontSettings }}>
+    <FontContext.Provider value={{ fontSettings, updateFontSettings, loading, setLoading, language, setLanguage }}>
       {children}
     </FontContext.Provider>
   );

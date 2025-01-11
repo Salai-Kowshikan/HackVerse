@@ -4,8 +4,7 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import { useFontSettings } from '@/components/FontContext';
 
 export default function CustomizeFont() {
-  const { fontSettings, updateFontSettings } = useFontSettings();
-  const [language, setLanguage] = useState("en");
+  const { fontSettings, updateFontSettings, setLanguage, language } = useFontSettings();
   const [fontSizeInput, setFontSizeInput] = useState(fontSettings.fontSize.toString());
   const [lineHeightInput, setLineHeightInput] = useState(fontSettings.lineHeight.toString());
 
