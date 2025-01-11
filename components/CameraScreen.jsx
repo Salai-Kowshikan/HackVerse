@@ -151,8 +151,7 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
-    height: '100%',
+  
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -162,7 +161,7 @@ const styles = StyleSheet.create({
   },
   camera: {
     flex: 1,
-    width: '100%',
+
   },
   bottomContainer: {
     position: 'absolute',

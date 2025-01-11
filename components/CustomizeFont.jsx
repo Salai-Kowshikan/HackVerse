@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { Chip } from 'react-native-paper';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { useFontSettings } from '@/components/FontContext';
 
 export default function CustomizeFont() {
   const { fontSettings, updateFontSettings } = useFontSettings();
+  const [language, setLanguage] = useState("en");
   const [fontSizeInput, setFontSizeInput] = useState(fontSettings.fontSize.toString());
   const [lineHeightInput, setLineHeightInput] = useState(fontSettings.lineHeight.toString());
 
@@ -84,6 +86,43 @@ export default function CustomizeFont() {
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
+      <Text style={[styles.label, { fontSize: fontSettings.fontSize, lineHeight: fontSettings.lineHeight, color: 'rgb(30, 27, 22)' }]}>
+        Translating Language
+      </Text>
+      <View style={styles.chipContainer}>
+        <Chip
+          style={[styles.chip, language === 'en' && styles.selectedChip]}
+          onPress={() => setLanguage('en')}
+        >
+          English
+        </Chip>
+        <Chip
+          style={[styles.chip, language === 'ta' && styles.selectedChip]}
+          onPress={() => setLanguage('ta')}
+        >
+          Tamil
+        </Chip>
+        <Chip
+          style={[styles.chip, language === 'es' && styles.selectedChip]}
+          onPress={() => setLanguage('es')}
+        >
+          Spanish
+        </Chip>
+        <Chip
+          style={[styles.chip, language === 'fr' && styles.selectedChip]}
+          onPress={() => setLanguage('fr')}
+        >
+          French
+        </Chip>
+        <Chip
+          style={[styles.chip, language === 'hi' && styles.selectedChip]}
+          onPress={() => setLanguage('hi')}
+        >
+          Hindi
+        </Chip>
+      </View>
+      
+   
     </View>
   );
 }
@@ -123,5 +162,28 @@ const styles = StyleSheet.create({
     flex: 1,             
     textAlign: 'center',  
     marginBottom: 0,     
+  },
+  chipContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  chip: {
+    margin: 8,
+    opacity:0.5,
+    paddingHorizontal: 16, 
+    height: 40,
+    justifyContent: 'center',
+  },
+  selectedChip: {
+    opacity: 1, 
+    background: '#ffcb21',
+    color: '#fff',
+  },
+  selectedLanguage: {
+    fontSize: 16,
+    color: '#555',
+    marginTop: 20,
   },
 });
