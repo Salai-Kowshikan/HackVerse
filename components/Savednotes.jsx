@@ -127,7 +127,6 @@ const SavedNotes = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgb(248, 248, 240)',
     padding: 20,
   },
   listContainer: {

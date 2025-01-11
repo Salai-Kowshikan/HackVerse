@@ -55,7 +55,7 @@ export default function CameraScreen() {
     formData.append('category', category);
     formData.append('image', {
       uri: photo,
-      name: `${title}.jpg`,
+      name: '${title}.jpg',
       type: 'image/jpeg',
     });
 
@@ -81,9 +81,9 @@ export default function CameraScreen() {
       <View style={styles.container}>
         <Text style={styles.message}>Captured Image</Text>
         <Image source={{ uri: photo }} style={styles.image} />
-        <View style={styles.buttonContainer}>
+        <View style={{ display: 'flex', flexDirection: 'row' }}>
           <Button mode="contained" onPress={resetCamera} style={styles.resetButton}>
-            Back to Camera
+            Back
           </Button>
           <Button mode="contained" onPress={() => setModalVisible(true)} style={styles.resetButton}>
             Save to Notes
@@ -122,15 +122,8 @@ export default function CameraScreen() {
   return (
     <View style={styles.container}>
       <CameraView style={styles.camera} facing={facing} ref={cameraRef}>
-        <View style={styles.bottomContainer}>
-          <TouchableOpacity onPress={toggleCameraFacing}>
-            <FAB
-              icon="camera-flip-outline"
-              style={styles.fab}
-              onPress={toggleCameraFacing}
-            />
-          </TouchableOpacity>
-
+        <View style={styles.buttonContainer}>
+          {/* Shutter Button */}
           <TouchableOpacity onPress={takePicture} style={styles.shutterButtonContainer}>
             <Button
               icon="camera"
@@ -142,6 +135,7 @@ export default function CameraScreen() {
           </TouchableOpacity>
         </View>
       </CameraView>
+      <FAB icon="camera-flip" style={styles.fab} onPress={toggleCameraFacing} />
     </View>
   );
 }
@@ -159,40 +153,47 @@ const styles = StyleSheet.create({
   message: {
     textAlign: 'center',
     paddingBottom: height * 0.02,
+    fontWeight: 'bold',
+    fontSize: height * 0.025,
+    color: 'rgb(30, 27, 22)', 
   },
   camera: {
     flex: 1,
     width: '100%',
   },
-  bottomContainer: {
-    position: 'absolute',
-    bottom: height * 0.1, 
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
+  buttonContainer: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   shutterButtonContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: width * 0.05, 
+    position: 'absolute',
+    bottom: height * 0.1,
+    left: '50%',
+    transform: [{ translateX: -width * 0.1 }],
   },
   shutterButton: {
-    width: height * 0.08, 
-    height: height * 0.08, 
-    borderRadius: height * 0.04, 
+    width: height * 0.1,
+    height: height * 0.1,
+    borderRadius: height * 0.05,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'rgb(255, 204, 0)', 
   },
   shutterButtonIcon: {
-    fontSize: height * 0.044,
+    fontSize: height * 0.05,
     fontWeight: 'lighter',
-    marginRight: 0, 
+    marginRight: 0,
   },
   fab: {
+    position: 'absolute',
     margin: height * 0.02,
-    backgroundColor: '#f0ad4e',
+    right: width * 0.09,
+    bottom: height * 0.087,
+    opacity: 0.8,
+    backgroundColor: 'rgb(116, 91, 0)', 
   },
   image: {
     width: '100%',
@@ -203,17 +204,21 @@ const styles = StyleSheet.create({
     margin: height * 0.02,
     width: width * 0.4,
     alignSelf: 'center',
+    backgroundColor: 'rgb(255, 204, 0)', 
   },
   modalContainer: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgb(255, 243, 191)',
     padding: width * 0.1,
     margin: width * 0.1,
     borderRadius: 10,
   },
   input: {
     marginBottom: height * 0.02,
+    borderColor: 'rgb(116, 91, 0)', 
+    backgroundColor: 'rgb(248, 248, 240)', 
   },
   saveButton: {
     marginTop: height * 0.02,
+    backgroundColor: 'rgb(255, 204, 0)', 
   },
 });
