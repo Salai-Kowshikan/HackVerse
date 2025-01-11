@@ -1,8 +1,8 @@
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
 import { useState, useRef } from 'react';
 import { FAB, Button, TextInput, Modal, Portal } from 'react-native-paper';
-import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
-import db from '@/api/api'
+import { StyleSheet, Text, TouchableOpacity, View, Image, Dimensions } from 'react-native';
+import db from '@/api/api';
 
 export default function CameraScreen() {
   const [facing, setFacing] = useState('back');
@@ -55,7 +55,7 @@ export default function CameraScreen() {
     formData.append('category', category);
     formData.append('image', {
       uri: photo,
-      name: '${title}.jpg',
+      name: `${title}.jpg`,
       type: 'image/jpeg',
     });
 
@@ -81,7 +81,7 @@ export default function CameraScreen() {
       <View style={styles.container}>
         <Text style={styles.message}>Captured Image</Text>
         <Image source={{ uri: photo }} style={styles.image} />
-        <View style={{ display: 'flex', flexDirection: 'row' }}>
+        <View style={styles.buttonContainer}>
           <Button mode="contained" onPress={resetCamera} style={styles.resetButton}>
             Back to Camera
           </Button>
@@ -122,75 +122,98 @@ export default function CameraScreen() {
   return (
     <View style={styles.container}>
       <CameraView style={styles.camera} facing={facing} ref={cameraRef}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-            <Button icon="camera-plus-outline" mode="contained" onPress={takePicture}>
-              Click me
-            </Button>
+        <View style={styles.bottomContainer}>
+          <TouchableOpacity onPress={toggleCameraFacing}>
+            <FAB
+              icon="camera-flip-outline"
+              style={styles.fab}
+              onPress={toggleCameraFacing}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={takePicture} style={styles.shutterButtonContainer}>
+            <Button
+              icon="camera"
+              mode="contained"
+              onPress={takePicture}
+              style={styles.shutterButton}
+              labelStyle={styles.shutterButtonIcon}
+            />
           </TouchableOpacity>
         </View>
       </CameraView>
-
-      <FAB icon="camera-flip-outline" style={styles.fab} onPress={toggleCameraFacing} />
     </View>
   );
 }
 
+const { width, height } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
-    height: 600,
-    width: 400,
-    alignSelf: 'center',
-    marginTop: 50,
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   message: {
     textAlign: 'center',
-    paddingBottom: 10,
+    paddingBottom: height * 0.02,
   },
   camera: {
     flex: 1,
+    width: '100%',
   },
-  buttonContainer: {
-    flex: 1,
+  bottomContainer: {
+    position: 'absolute',
+    bottom: height * 0.1, 
+    left: 0,
+    right: 0,
     flexDirection: 'row',
-    backgroundColor: 'transparent',
-    margin: 64,
-  },
-  button: {
-    flex: 1,
-    alignSelf: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
+  shutterButtonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: width * 0.05, 
+  },
+  shutterButton: {
+    width: height * 0.08, 
+    height: height * 0.08, 
+    borderRadius: height * 0.04, 
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  shutterButtonIcon: {
+    fontSize: height * 0.044,
+    fontWeight: 'lighter',
+    marginRight: 0, 
   },
   fab: {
-    position: 'absolute',
-    margin: 16,
-    right: -10,
-    bottom: 0,
+    margin: height * 0.02,
+    backgroundColor: '#f0ad4e',
   },
   image: {
-    flex: 1,
     width: '100%',
+    height: height * 0.5,
     resizeMode: 'contain',
   },
   resetButton: {
-    margin: 20,
+    margin: height * 0.02,
+    width: width * 0.4,
     alignSelf: 'center',
   },
   modalContainer: {
     backgroundColor: 'white',
-    padding: 20,
-    margin: 20,
+    padding: width * 0.1,
+    margin: width * 0.1,
     borderRadius: 10,
   },
   input: {
-    marginBottom: 20,
+    marginBottom: height * 0.02,
   },
   saveButton: {
-    marginTop: 10,
+    marginTop: height * 0.02,
   },
 });
