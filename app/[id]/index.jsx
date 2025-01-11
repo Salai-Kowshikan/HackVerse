@@ -2,12 +2,13 @@ import { View, Image, StyleSheet, ScrollView } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import db from "@/api/api";
-import { Button, Surface, Modal, Portal, Text } from "react-native-paper";
+import * as Speech from "expo-speech";
+import { Button, Surface, Modal, Portal, Text,FAB } from "react-native-paper";
 import { useFontSettings } from "@/components/FontContext";
 
 function NotePage() {
   const { id } = useLocalSearchParams();
-
+ 
   const { setLoading } = useFontSettings();
   const [note, setNote] = useState();
   const [visible, setVisible] = useState(false);
@@ -57,8 +58,10 @@ function NotePage() {
 }
 
 const ExplainModal = ({ visible, setVisible, content, setContent }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
   const { setLoading, language } = useFontSettings();
   const containerStyle = { backgroundColor: "white", padding: 25, margin: 25, maxHeight: "75%" };
+
   const translate = async () => {
     setLoading(true);
     const response = await db.post(`/translate`, {
@@ -69,23 +72,66 @@ const ExplainModal = ({ visible, setVisible, content, setContent }) => {
     setContent(response.data.translated_text);
     setLoading(false);
   };
+
+  const playText = () => {
+    if (!isPlaying) {
+      Speech.speak(content, {
+        onDone: () => setIsPlaying(false),
+      });
+      setIsPlaying(true);
+    }
+  };
+
+  const pauseText = () => {
+    Speech.pause();
+  };
+
+  const stopText = () => {
+    Speech.stop();
+    setIsPlaying(false);
+  };
+
   return (
-    <>
-      <Portal>
-        <Modal
-          visible={visible}
-          onDismiss={() => setVisible(false)}
-          contentContainerStyle={containerStyle}
-        >
-          <ScrollView>
-            <Text>{content}</Text>
-          </ScrollView>
-          <Button onPress={translate}> Translate! </Button>
-        </Modal>
-      </Portal>
-    </>
+    <Portal>
+      <Modal
+        visible={visible}
+        onDismiss={() => {
+          setVisible(false);
+          stopText(); // Stop TTS when modal is dismissed
+        }}
+        contentContainerStyle={containerStyle}
+      >
+        <ScrollView>
+          <Text>{content}</Text>
+        </ScrollView>
+        <Button onPress={translate}>Translate!</Button>
+
+        {/* FAB buttons for text-to-speech */}
+        <View style={styles.fabContainer}>
+          <FAB
+            icon="play"
+            style={styles.fab}
+            onPress={playText}
+            disabled={isPlaying}
+          />
+          <FAB
+            icon="pause"
+            style={styles.fab}
+            onPress={pauseText}
+            disabled={!isPlaying}
+          />
+          <FAB
+            icon="stop"
+            style={styles.fab}
+            onPress={stopText}
+            disabled={!isPlaying}
+          />
+        </View>
+      </Modal>
+    </Portal>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
