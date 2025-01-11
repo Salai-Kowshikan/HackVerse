@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Appbar,PaperProvider } from 'react-native-paper';
+import { Appbar} from 'react-native-paper';
 
 
 const Navbarheader= () => {

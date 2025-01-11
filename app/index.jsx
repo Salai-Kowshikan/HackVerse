@@ -1,16 +1,11 @@
 import { Text, View } from "react-native";
 import Home from "@/components/Home";
+import Navbarbottom from '@/components/Navbarbottom'
 
 export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Home />
-    </View>
+    <>
+    <Navbarbottom />
+    </>
   );
 }
