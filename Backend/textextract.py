@@ -5,7 +5,6 @@ import os
 
 load_dotenv()
 
-
 subscription_key = os.getenv("SUBSCRIPTION_KEY")
 endpoint = os.getenv("ENDPOINT")
 ocr_url = endpoint + "/vision/v3.2/read/analyze"
@@ -52,5 +51,4 @@ if __name__ == "__main__":
     image_path = 'Backend\\test3.jpg'
     result = recognize_text_azure(image_path)
     extracted_text = extract_text(result)
-    
     print("Extracted Text:\n", extracted_text)
