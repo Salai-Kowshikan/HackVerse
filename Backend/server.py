@@ -80,9 +80,9 @@ def extract_route():
                 "text": extracted_text,
                 "image": cropped_image_base64
             }
-            db['Records'].insert_one(record)
             print("textract completed")
-            return
+            db['Records'].insert_one(record)
+            return jsonify({"success": True})
         except Exception as e:
             return jsonify({"error": str(e)}), 500
 
