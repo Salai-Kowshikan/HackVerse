@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
-import { Button, Card, Text, IconButton } from "react-native-paper";
+import { Button, Card, Text, IconButton, Searchbar} from "react-native-paper";
 import { useFontSettings } from "@/components/FontContext";
 import { useRouter } from "expo-router";
 import db from "@/api/api";
@@ -12,12 +12,24 @@ const SavedNotes = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedNotes, setSelectedNotes] = useState([]);
   const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    const filteredNotes = records.filter((note) => note.category === category);
+
+    let filteredNotes = records.filter((note) => note.category === category);
     setSelectedNotes(filteredNotes);
   };
+
+  useEffect(() => {
+    if (searchQuery) {
+      let filteredNotes = records.filter((note) => note.category === selectedCategory);
+      filteredNotes = filteredNotes.filter((note) =>
+         note.title.includes(searchQuery)
+      );
+      setSelectedNotes(filteredNotes);
+    }
+  },[searchQuery])
 
   const handleBackClick = () => {
     setSelectedCategory(null);
@@ -49,14 +61,25 @@ const SavedNotes = () => {
     <ScrollView style={styles.container}>
       {selectedCategory ? (
         <ScrollView>
+          <View style={styles.searchBar}>
           <Button
             icon="arrow-left-drop-circle-outline"
             labelStyle={styles.backButtonIcon}
             style={styles.backButton}
             onPress={handleBackClick}
           >
-            Back
+           
           </Button>
+          <View style={styles.searchStyle}>
+            <Searchbar
+              placeholder="Search"
+              onChangeText={(value)=>setSearchQuery(value)}
+              value={searchQuery}
+      
+              style={styles.textField}
+            />
+          </View>
+      </View>
           <View style={styles.listContainer}>
             {selectedNotes.map((note, index) => (
               <Card
@@ -194,7 +217,9 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginRight: 8,
+
   },
   backButtonIcon: {
     fontSize: 20,
@@ -202,6 +227,28 @@ const styles = StyleSheet.create({
   },
   iconButton: {
     marginLeft: 10,
+  },
+  searchBar:{
+    flexDirection: "row",
+
+  },
+  
+  searchStyle: {
+    flex: 1, 
+  },
+  searchBar: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 4,
+  },
+  
+  backButton: {
+    
+  },
+
+  
+  textField: {
+    width: "100%",
   },
 });
 
