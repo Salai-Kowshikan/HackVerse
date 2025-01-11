@@ -47,6 +47,8 @@ const { fontSettings, updateFontSettings } = useFontSettings();
       ) : (
        
         <View style={styles.listContainer}>
+        <Text style={[styles.selectedCategoryText,{ fontSize: fontSettings.fontSize, lineHeight: fontSettings.lineHeight }]}>List of Category</Text>
+
           {categories.map((category, index) => (
             <Card key={index} style={styles.card} onPress={() => handleCategoryClick(category)}>
               <Card.Content>
@@ -66,10 +68,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
-  
+  listContainer:{
+    marginBottom:20,
+  },
   card: {
     width: '100%',
-    marginBottom: 16,
+    marginBottom:0,
+    marginTop:30,
   },
   category: {
    
@@ -86,11 +91,11 @@ const styles = StyleSheet.create({
   selectedCategoryText: {
     
     fontWeight: 'bold',
-    marginBottom: 10,
+    padding:20,
   },
   backButton: {
     alignSelf: 'flex-start',  
-    marginBottom: 10,       
+          
   },
 });
 

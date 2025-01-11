@@ -15,7 +15,7 @@ const Navbarheader= () => {
     <Appbar.Header>
          {pathname !== '/'&& <Appbar.BackAction icon="camera-plus" onPress={() => router.back()} />}
 
-      <Appbar.Content title="Hackverse app" />
+      <Appbar.Content title="Mithran " />
       {pathname!=='/information' && <Appbar.Action icon="information-outline" onPress={handleMore} />}
     </Appbar.Header>
     
