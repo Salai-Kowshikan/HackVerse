@@ -99,14 +99,14 @@ export default function CameraScreen() {
             <TextInput
               label="Title"
               value={title}
-              onChangeText={setTitle}
+              onChangeText={(value) => setTitle(value)}
               mode="outlined"
               style={styles.input}
             />
             <TextInput
               label="Category"
               value={category}
-              onChangeText={setCategory}
+              onChangeText={(value) => setCategory(value)}
               mode="outlined"
               style={styles.input}
             />
@@ -124,7 +124,7 @@ export default function CameraScreen() {
       <CameraView style={styles.camera} facing={facing} ref={cameraRef}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-            <Button icon="camera-flip-outline" mode="contained" onPress={takePicture}>
+            <Button icon="camera-plus-outline" mode="contained" onPress={takePicture}>
               Click me
             </Button>
           </TouchableOpacity>
