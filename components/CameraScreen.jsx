@@ -123,7 +123,6 @@ export default function CameraScreen() {
     <View style={styles.container}>
       <CameraView style={styles.camera} facing={facing} ref={cameraRef}>
         <View style={styles.buttonContainer}>
-          {/* Shutter Button */}
           <TouchableOpacity onPress={takePicture} style={styles.shutterButtonContainer}>
             <Button
               icon="camera"
@@ -144,11 +143,7 @@ const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1
   },
   message: {
     textAlign: 'center',
@@ -158,8 +153,7 @@ const styles = StyleSheet.create({
     color: 'rgb(30, 27, 22)', 
   },
   camera: {
-    flex: 1,
-    width: '100%',
+    flex: 1
   },
   buttonContainer: {
     flex: 1,

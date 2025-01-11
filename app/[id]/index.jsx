@@ -1,17 +1,29 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, ScrollView } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import db from "@/api/api";
-import { Button, Surface } from "react-native-paper";
+import { Button, Surface, Modal, Portal, Text } from "react-native-paper";
+import { useFontSettings } from "@/components/FontContext";
 
 function NotePage() {
   const { id } = useLocalSearchParams();
+
+  const { setLoading } = useFontSettings();
   const [note, setNote] = useState();
+  const [visible, setVisible] = useState(false);
+  const [content, setContent] = useState();
 
   const fetchNote = async () => {
     const response = await db.get(`/record/${id}`);
-    console.log(response.data);
     setNote(response.data);
+  };
+
+  const explain = async () => {
+    setLoading(true);
+    const response = await db.post(`/explain`, { user_message: note.text });
+    setContent(response.data.response.answer);
+    setVisible(true);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -31,11 +43,48 @@ function NotePage() {
             <Text style={styles.text}>{note.text}</Text>
           </>
         )}
-        <Button> Explain </Button>
+        <Button onPress={explain}> Explain </Button>
       </Surface>
+      <ExplainModal
+        visible={visible}
+        setVisible={setVisible}
+        content={content}
+        setContent={setContent}
+      />
     </View>
   );
 }
+
+const ExplainModal = ({ visible, setVisible, content, setContent }) => {
+  const { setLoading, language } = useFontSettings();
+  const containerStyle = { backgroundColor: "white", padding: 25, margin: 25, maxHeight: "75%" };
+  const translate = async () => {
+    setLoading(true);
+    const response = await db.post(`/translate`, {
+      source: "en",
+      target: language,
+      text: content,
+    });
+    setContent(response.data.translated_text);
+    setLoading(false);
+  };
+  return (
+    <>
+      <Portal>
+        <Modal
+          visible={visible}
+          onDismiss={() => setVisible(false)}
+          contentContainerStyle={containerStyle}
+        >
+          <ScrollView>
+            <Text>{content}</Text>
+          </ScrollView>
+          <Button onPress={translate}> Translate! </Button>
+        </Modal>
+      </Portal>
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
