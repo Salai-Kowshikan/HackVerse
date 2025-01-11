@@ -28,6 +28,7 @@ def home():
 
 @app.route('/explain', methods=['POST'])
 def explain_route():
+    print("data send")
     data = request.get_json()
     user_message = data.get('user_message')
     if not user_message:
