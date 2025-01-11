@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
+from bson import ObjectId
 from dotenv import load_dotenv
 import os
 import tempfile
@@ -86,6 +87,27 @@ def extract_route():
             return jsonify({"success": True})
         except Exception as e:
             return jsonify({"error": str(e)}), 500
+
+@app.route('/records', methods=['GET'])
+def get_records():
+    records = list(db['Records'].find())
+    for record in records:
+        record['_id'] = str(record['_id']) 
+        if 'image' in record:
+            del record['image'] 
+    return jsonify(records)
+
+@app.route('/record/<record_id>', methods=['GET'])
+def get_record(record_id):
+    try:
+        record = db['Records'].find_one({"_id": ObjectId(record_id)})
+        if record:
+            record['_id'] = str(record['_id'])
+            return jsonify(record)
+        else:
+            return jsonify({"error": "Record not found"}), 404
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.config['DEBUG'] = False
