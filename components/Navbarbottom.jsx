@@ -13,8 +13,8 @@ const Navbarbottom = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: 'notes', title: 'Saved Notes', focusedIcon: 'content-save-all', unfocusedIcon: 'content-save-all-outline' },
-    { key: 'camera', title: 'Take Picture', focusedIcon: 'camera', unfocusedIcon: 'camera' },
-    { key: 'theme', title: 'Customize Theme', focusedIcon: 'format-font', unfocusedIcon: 'format-font' },
+    { key: 'camera', title: 'Take Notes', focusedIcon: 'camera', unfocusedIcon: 'camera' },
+    { key: 'theme', title: 'Customize', focusedIcon: 'format-font', unfocusedIcon: 'format-font' },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({

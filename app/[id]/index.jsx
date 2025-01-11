@@ -15,7 +15,6 @@ function NotePage() {
 
   const fetchNote = async () => {
     const response = await db.get(`/record/${id}`);
-    console.log(response.data);
     setNote(response.data);
   };
 

@@ -54,11 +54,9 @@ function RootLayout() {
     <>
     <FontProvider>
     <PaperProvider theme={theme}>
-   
         <Navbarheader />
         <Loader />
         <Stack screenOptions={{ headerShown: false }} />
-     
     </PaperProvider>
      </FontProvider>
     </>
