@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import { Button, Card, Text, IconButton } from 'react-native-paper';
-import data from './data.json';
 import { useFontSettings } from '@/components/FontContext';
+import { useRouter } from 'expo-router';
+import db from '@/api/api';
 
 const SavedNotes = () => {
-  const categories = data.categories;
   const { fontSettings } = useFontSettings();
+  const [records, setRecords] = useState([]);
+  const [categoryList, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedNotes, setSelectedNotes] = useState([]);
+  const router = useRouter();
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    const filteredNotes = data.notes.filter((note) => note.category === category);
+    const filteredNotes = records.filter((note) => note.category === category);
     setSelectedNotes(filteredNotes);
   };
 
@@ -25,10 +28,27 @@ const SavedNotes = () => {
     console.log(`Arrow button clicked for: ${noteTitle}`);
   };
 
+  const fetchRecords = async () => {
+    try {
+      const response = await db.get('/records');
+      setRecords(response.data);
+      const uniqueCategories = [...new Set(response.data.map(record => record.category))];
+      setCategories(uniqueCategories);
+      console.log(uniqueCategories)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchRecords();
+    console.log('SavedNotes component mounted');
+  }, [])
+
   return (
     <ScrollView style={styles.container}>
       {selectedCategory ? (
-        <View style={styles.noteContainer}>
+        <ScrollView style={styles.noteContainer}>
           <Button
             icon="arrow-left-drop-circle-outline"
             labelStyle={styles.backButtonIcon}
@@ -39,7 +59,7 @@ const SavedNotes = () => {
           </Button>
           <View style={styles.listContainer}>
             {selectedNotes.map((note, index) => (
-              <Card key={index} style={styles.card}>
+              <Card key={index} style={styles.card} onPress={() => router.push(`${note._id}`)}>
                 <Card.Content style={styles.cardContent}>
                   <View style={styles.cardTextContainer}>
                     <Text
@@ -56,7 +76,7 @@ const SavedNotes = () => {
                         { fontSize: fontSettings.fontSize, lineHeight: fontSettings.lineHeight },
                       ]}
                     >
-                      {note.content}
+                      {note.text}
                     </Text>
                   </View>
                   <IconButton
@@ -69,7 +89,7 @@ const SavedNotes = () => {
               </Card>
             ))}
           </View>
-        </View>
+        </ScrollView>
       ) : (
         <View style={styles.listContainer}>
           <Text
@@ -80,7 +100,7 @@ const SavedNotes = () => {
           >
             List of Categories
           </Text>
-          {categories.map((category, index) => (
+          {categoryList.map((category, index) => (
             <Card
               key={index}
               style={styles.card}
