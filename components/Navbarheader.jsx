@@ -1,19 +1,22 @@
 import * as React from 'react';
 import { Appbar} from 'react-native-paper';
-
+import { useRouter,usePathname  } from 'expo-router';
 
 const Navbarheader= () => {
+  const pathname= usePathname();
+  const router = useRouter();
 
-
-  const _handleMore = () => console.log('Shown more');
+  const handleMore = () => {
+    router.push('/information'); 
+  };
 
   return (
     
     <Appbar.Header>
-     
+         {pathname !== '/'&& <Appbar.BackAction icon="camera-plus" onPress={() => router.back()} />}
+
       <Appbar.Content title="Hackverse app" />
-     
-      <Appbar.Action icon="information-outline" onPress={_handleMore} />
+      {pathname!=='/information' && <Appbar.Action icon="information-outline" onPress={handleMore} />}
     </Appbar.Header>
     
   );
