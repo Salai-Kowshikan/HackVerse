@@ -1,0 +1,9 @@
+Flask==3.0.3
+Flask-Cors==4.0.0
+pymongo==4.8.0
+python-dotenv==1.0.1
+requests==2.31.0
+opencv-python==4.9.0.80
+numpy==1.26.2
+groclake==0.1.14
+gunicorn==21.2.0
