@@ -70,9 +70,9 @@ function NotePage() {
             <Markdown style={styles.text}>{note.text}</Markdown>
           </>
         )}
-        <Button onPress={explain}> Explain </Button>
-        <Button onPress={recommend}> Recommend resources </Button>
-        <Button onPress={check}> Spell Check </Button>
+        <Button mode="contained" style={styles.threeButton} onPress={explain}> Explain </Button>
+        <Button  mode="contained"  style={styles.threeButton} onPress={recommend}> Recommend resources </Button>
+        <Button  mode="contained"  style={styles.threeButton} onPress={check}> Spell Check </Button>
       </Surface>
 
       <ExplainModal
@@ -220,8 +220,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 50,
     left: 20,
-    backgroundColor: "rgb(255, 252, 229)", 
-    color: "rgb(0, 0, 0)",
+  
     fontWeight: "bold",
   },
   Button: {
@@ -245,6 +244,12 @@ const styles = StyleSheet.create({
   fab: {
     backgroundColor: "rgb(255, 204, 0)", 
   },
+  threeButton:{
+    marginBottom:10,
+    fontWeight: "bold",
+
+
+  }
 });
 
 
