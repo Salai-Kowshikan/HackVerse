@@ -4,7 +4,7 @@
     "slug": "Mithran",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/MithranLogo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -57,6 +57,13 @@
       "eas": {
         "projectId": "75b9a422-5dc7-43ea-89fe-6d27d1fac3bd"
       }
-    }
+    },
+    
+      "splash": {
+        "image": "./assets/images/MithranLogo.png"
+      }
+   
+    
+    
   }
 }

@@ -125,6 +125,7 @@ export default function CameraScreen() {
 
   return (
     <View style={styles.container}>
+      
       <CameraView style={styles.camera} facing={facing} ref={cameraRef}>
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={takePicture} style={styles.shutterButtonContainer}>
