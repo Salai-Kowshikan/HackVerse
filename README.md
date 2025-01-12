@@ -5,6 +5,7 @@
 Please install the android apk in the following drive link. If you are an iOS user, then you can try out the app by running it on Expo Go. We will publish an iOS build soon.
 
 Android link: [Drive](https://drive.google.com/drive/u/0/folders/1mDsBy9HYyWpa-HTUK4Euj5UHo2vSKCII)
+Video Link: [YouTube](https://youtu.be/ziJIEGtWOXQ)
 
 
 When it comes to mental health disabilities, the general population of India is largely unaware of them. This is even more pronounced in the case of specific learning disabilities such as dyslexia, which are less apparent. While awareness is improving in modern times, and special attention is now given to students with such disabilities in schools, the support often falls short as higher education becomes more complicated.
@@ -23,9 +24,11 @@ Using the app, users can:
 - Borrow their friend's class notes and transform them into a digital format.
 - Organize notes using tags in the cloud.
 - Access these notes and:
-  - *Explain* the content in simpler terms.
-  - *Translate* it into their local language.
-  - Perform *grammatical and spell checks* as well as formatting.
+  -*Explain* the content in simpler terms.
+  -*Translate* it into their local language.
+  -Listen to notes as audio for better learning using *text to speech* conversion.
+  -Display related *resources and references* from Google.
+  -Perform grammatical and *spell checks* as well as formatting.
 
 Powered by *Groclake*, all these functionalities are seamlessly integrated, providing exceptional responses, including the ability to simplify complex topics like automata.
 
