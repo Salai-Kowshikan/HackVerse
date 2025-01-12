@@ -196,13 +196,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "rgb(255, 252, 229)", 
   },
   surface: {
     padding: 20,
     elevation: 4,
     borderRadius: 8,
-    backgroundColor: "#fff",
+    backgroundColor: "rgb(255, 243, 191)", 
   },
   image: {
     width: "100%",
@@ -214,23 +214,38 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 10,
-    color: "#333",
+    color: "rgb(102, 85, 0)", 
   },
   snackbar: {
     position: "absolute",
     bottom: 50,
     left: 20,
+    backgroundColor: "rgb(255, 252, 229)", 
+    color: "rgb(0, 0, 0)",
+    fontWeight: "bold",
+  },
+  Button: {
+    borderRadius: 150,
+    paddingVertical: 8,
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 1,
   },
   text: {
     fontSize: 16,
-    color: "#666",
+    color: "rgb(77, 70, 57)", 
   },
-  fabContainer:{
+  fabContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 20,
   },
-  
+  fab: {
+    backgroundColor: "rgb(255, 204, 0)", 
+  },
 });
+
 
 export default NotePage;

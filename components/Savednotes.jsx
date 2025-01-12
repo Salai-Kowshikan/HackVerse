@@ -172,9 +172,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   card: {
-    backgroundColor: "rgb(255, 243, 191)",
+    backgroundColor: "rgb(255, 243, 191)", 
     borderRadius: 8,
-    shadowColor: "rgba(0, 0, 0, 0.1)",
+    shadowColor: "rgba(0, 0, 0, 0.1)", 
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 4,
@@ -206,50 +206,38 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingVertical: 10,
     textAlign: "center",
-    color: "rgb(30, 27, 22)",
+    color: "rgb(30, 27, 22)", 
   },
   backButton: {
-    backgroundColor: "rgb(255, 204, 0)",
-    borderRadius: 25,
-    marginBottom: 20,
-    paddingHorizontal: 15,
+    borderRadius: 150,
     paddingVertical: 8,
     alignSelf: "flex-start",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 8,
-
+    width: 1,
   },
   backButtonIcon: {
-    fontSize: 20,
-    color: "black",
+    fontSize: 30,
+    color: "black", 
+    marginRight: 0,
   },
   iconButton: {
     marginLeft: 10,
-  },
-  searchBar:{
-    flexDirection: "row",
-
-  },
-  
-  searchStyle: {
-    flex: 1, 
   },
   searchBar: {
     flexDirection: "row",
     alignItems: "center",
     padding: 4,
   },
-  
-  backButton: {
-    
+  searchStyle: {
+    flex: 1,
   },
-
-  
   textField: {
     width: "100%",
+    backgroundColor: "rgb(255, 204, 0)",
   },
 });
+
 
 export default SavedNotes;
