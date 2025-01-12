@@ -58,7 +58,6 @@ editdistance==0.8.1
 efficientnet==1.0.0
 executing==2.0.1
 filelock==3.12.4
-fire==0.6.0
 Flask==3.0.3
 Flask-Cors==4.0.0
 flatbuffers==24.3.25
@@ -92,7 +91,6 @@ joblib==1.4.2
 jsonpickle==3.3.0
 kiwisolver==1.4.5
 langcodes==3.4.0
-langdetect==1.0.9
 language_data==1.2.0
 lazy_loader==0.4
 libclang==18.1.1
@@ -161,7 +159,6 @@ requests-file==2.0.0
 requests-oauthlib==2.0.0
 rich==13.7.1
 rsa==4.9
-ruamel.yaml==0.15.89
 schedule==1.2.2
 seaborn==0.13.2
 SecretStorage==3.3.3
