@@ -4,7 +4,7 @@
     "slug": "Mithran",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/MithranLogo.png",
+    "icon": "./assets/images/Logo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/Logo.png",
         "backgroundColor": "#ffffff"
       },
       "permissions": [
@@ -32,7 +32,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/Logo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
@@ -55,15 +55,17 @@
         "origin": false
       },
       "eas": {
-        "projectId": "75b9a422-5dc7-43ea-89fe-6d27d1fac3bd"
+        "projectId": "4cf7b880-4f48-4042-b24f-8adf3d6c7811"
       }
     },
-    
-      "splash": {
-        "image": "./assets/images/MithranLogo.png"
-      }
-   
-    
-    
+    "splash": {
+      "image": "./assets/images/Logo.png"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/4cf7b880-4f48-4042-b24f-8adf3d6c7811"
+    }
   }
 }

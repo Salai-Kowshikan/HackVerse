@@ -21,7 +21,7 @@ export default function CameraScreen() {
 
   useEffect(() => {
     requestPermission();
-  })
+  },[]);
 
   if (!permission) {
     return <View />;
