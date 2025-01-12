@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
-import { Button, Card, Text, IconButton, Searchbar} from "react-native-paper";
+import { Button, Card, Text, IconButton, Searchbar } from "react-native-paper";
 import { useFontSettings } from "@/components/FontContext";
 import { useRouter } from "expo-router";
 import db from "@/api/api";
@@ -29,15 +29,11 @@ const SavedNotes = () => {
       );
       setSelectedNotes(filteredNotes);
     }
-  },[searchQuery])
+  }, [searchQuery]);
 
   const handleBackClick = () => {
     setSelectedCategory(null);
     setSelectedNotes([]);
-  };
-
-  const handleIconPress = (noteTitle) => {
-    console.log(`Arrow button clicked for: ${noteTitle}`);
   };
 
   const fetchRecords = async () => {
@@ -57,29 +53,32 @@ const SavedNotes = () => {
     fetchRecords();
   }, []);
 
+  const truncateText = (text, length) => {
+    if (text.length <= length) return text;
+    return text.substring(0, length) + '...';
+  };
+
   return (
     <ScrollView style={styles.container}>
       {selectedCategory ? (
         <ScrollView>
           <View style={styles.searchBar}>
-          <Button
-            icon="arrow-left-drop-circle-outline"
-            labelStyle={styles.backButtonIcon}
-            style={styles.backButton}
-            onPress={handleBackClick}
-          >
-           
-          </Button>
-          <View style={styles.searchStyle}>
-            <Searchbar
-              placeholder="Search"
-              onChangeText={(value)=>setSearchQuery(value)}
-              value={searchQuery}
-      
-              style={styles.textField}
-            />
+            <Button
+              icon="arrow-left-drop-circle-outline"
+              labelStyle={styles.backButtonIcon}
+              style={styles.backButton}
+              onPress={handleBackClick}
+            >
+            </Button>
+            <View style={styles.searchStyle}>
+              <Searchbar
+                placeholder="Search"
+                onChangeText={(value) => setSearchQuery(value)}
+                value={searchQuery}
+                style={styles.textField}
+              />
+            </View>
           </View>
-      </View>
           <View style={styles.listContainer}>
             {selectedNotes.map((note, index) => (
               <Card
@@ -109,13 +108,12 @@ const SavedNotes = () => {
                         },
                       ]}
                     >
-                      {note.text}
+                      {truncateText(note.text, 60)}
                     </Text>
                   </View>
                   <IconButton
                     icon="arrow-right"
                     size={20}
-                    onPress={() => handleIconPress(note.title)}
                     style={styles.iconButton}
                   />
                 </Card.Content>
@@ -238,6 +236,5 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(255, 204, 0)",
   },
 });
-
 
 export default SavedNotes;

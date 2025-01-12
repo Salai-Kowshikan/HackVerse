@@ -58,7 +58,7 @@ function NotePage() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Surface style={styles.surface}>
         {note && (
           <>
@@ -89,7 +89,7 @@ function NotePage() {
           id={note._id}
         />
       )}
-    </View>
+    </ScrollView>
   );
 }
 
@@ -197,6 +197,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: "rgb(255, 252, 229)", 
+    marginBottom: 50,
   },
   surface: {
     padding: 20,

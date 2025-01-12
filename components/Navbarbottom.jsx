@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { BottomNavigation, Text } from 'react-native-paper';
+import { BottomNavigation } from 'react-native-paper';
 import CameraScreen from '@/components/CameraScreen';
 import Savednotes from '@/components/Savednotes';
 import CustomizeFont from '@/components/CustomizeFont';
-import { View } from 'react-native';
 
-const MusicRoute = () => <Savednotes />;
+const NotesRoute = () => <Savednotes />;
 const CameraRoute = () => <CameraScreen />;
-const NotificationsRoute = () => <CustomizeFont />;
+const CustomizationRoute = () => <CustomizeFont />;
 
 const Navbarbottom = () => {
   const [index, setIndex] = React.useState(1);
@@ -18,9 +17,9 @@ const Navbarbottom = () => {
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
-    notes: MusicRoute,
+    notes: NotesRoute,
     camera: CameraRoute,
-    theme: NotificationsRoute,
+    theme: CustomizationRoute
   });
 
   return (
