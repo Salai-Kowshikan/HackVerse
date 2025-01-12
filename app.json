@@ -30,6 +30,15 @@
     "plugins": [
       "expo-router",
       [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/Logo.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      [
         "expo-camera",
         {
           "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
@@ -38,6 +47,9 @@
         }
       ]
     ],
+    "experiments": {
+      "typedRoutes": true
+    },
     "extra": {
       "router": {
         "origin": false
@@ -45,6 +57,9 @@
       "eas": {
         "projectId": "4cf7b880-4f48-4042-b24f-8adf3d6c7811"
       }
+    },
+    "splash": {
+      "image": "./assets/images/Logo.png"
     },
     "runtimeVersion": {
       "policy": "appVersion"
