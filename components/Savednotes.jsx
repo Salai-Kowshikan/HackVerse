@@ -132,7 +132,7 @@ const SavedNotes = () => {
               },
             ]}
           >
-            List of Categories
+            List of Tags
           </Text>
           {categoryList.map((category, index) => (
             <Card

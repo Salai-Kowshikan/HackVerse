@@ -11,7 +11,7 @@ function Loader() {
         <View style={styles.loaderContainer}>
           <AnimatedLoader
             visible={loading}
-            overlayColor="rgba(255,255,255,0.75)"
+            overlayColor="rgba(255, 230, 128, 0.62)"
             speed={1}
             source={require("./loader.json")}
             animationStyle={styles.lottie}

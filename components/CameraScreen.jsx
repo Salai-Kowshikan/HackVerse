@@ -1,10 +1,15 @@
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
 import { useState, useRef, useEffect } from 'react';
+
 import { FAB, Button, TextInput, Modal, Portal } from 'react-native-paper';
 import { StyleSheet, Text, TouchableOpacity, View, Image, Dimensions } from 'react-native';
 import db from '@/api/api';
 
+import { useFontSettings } from "@/components/FontContext";
+
+
 export default function CameraScreen() {
+  const { setLoading } = useFontSettings();
   const [facing, setFacing] = useState('back');
   const [permission, requestPermission] = useCameraPermissions();
   const [photo, setPhoto] = useState(null);
@@ -65,13 +70,16 @@ export default function CameraScreen() {
 
     try {
       console.log('Saving to notes:');
+      setLoading(true);
       const response = await db.post('/extract', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
       console.log('Upload successful:', response.data);
+      setLoading(false);
       alert('Saved to notes successfully!');
+      
       resetCamera();
       setModalVisible(false);
     } catch (error) {
@@ -108,7 +116,7 @@ export default function CameraScreen() {
               style={styles.input}
             />
             <TextInput
-              label="Category"
+              label="Tag"
               value={category}
               onChangeText={(value) => setCategory(value)}
               mode="outlined"
