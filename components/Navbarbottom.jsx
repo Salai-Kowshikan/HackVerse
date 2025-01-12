@@ -10,7 +10,7 @@ const CameraRoute = () => <CameraScreen />;
 const NotificationsRoute = () => <CustomizeFont />;
 
 const Navbarbottom = () => {
-  const [index, setIndex] = React.useState(0);
+  const [index, setIndex] = React.useState(1);
   const [routes] = React.useState([
     { key: 'notes', title: 'Saved Notes', focusedIcon: 'content-save-all', unfocusedIcon: 'content-save-all-outline' },
     { key: 'camera', title: 'Take Notes', focusedIcon: 'camera', unfocusedIcon: 'camera' },
