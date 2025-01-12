@@ -1,50 +1,40 @@
-# Welcome to your Expo app 👋
+# Mithran: Empowering Learning for Everyone
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Deployed links
 
-## Get started
+Please install the android apk in the following drive link. If you are an iOS user, then you can try out the app by running it on Expo Go. We will publish an iOS build soon.
 
-1. Install dependencies
+Android link: [Drive](https://drive.google.com/drive/u/0/folders/1mDsBy9HYyWpa-HTUK4Euj5UHo2vSKCII)
 
-   ```bash
-   npm install
-   ```
 
-2. Start the app
+When it comes to mental health disabilities, the general population of India is largely unaware of them. This is even more pronounced in the case of specific learning disabilities such as dyslexia, which are less apparent. While awareness is improving in modern times, and special attention is now given to students with such disabilities in schools, the support often falls short as higher education becomes more complicated.
 
-   ```bash
-    npx expo start
-   ```
+## Our Solution
 
-In the output, you'll find options to open the app in a
+*Mithran* aims to provide an easy-to-use tool to help these students learn in a simpler and more effective way. Inspired by the impressive yet simple explanations provided by the Modellake from Plotch.ai, we envisioned leveraging it to build a solution that could support learners from school through graduation—a goal that remains a distant dream for many individuals with learning disabilities.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Accessibility at the Core
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+With accessibility in mind, our app follows a *dyslexia-friendly color theme*, featuring light pastel backgrounds and dark text for better readability. Users can customize the app to fit their needs. Upon opening, the app immediately launches the camera—a feature inspired by Snapchat—allowing users to quickly capture anything before the opportunity is gone.
 
-## Get a fresh project
+## Features
 
-When you're ready, run:
+Using the app, users can:
+- Borrow their friend's class notes and transform them into a digital format.
+- Organize notes using tags in the cloud.
+- Access these notes and:
+  - *Explain* the content in simpler terms.
+  - *Translate* it into their local language.
+  - Perform *grammatical and spell checks* as well as formatting.
 
-```bash
-npm run reset-project
-```
+Powered by *Groclake*, all these functionalities are seamlessly integrated, providing exceptional responses, including the ability to simplify complex topics like automata.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Future Developments
 
-## Learn more
+We have exciting plans for future development, including:
+- *Digitizing conceptual diagrams and flowcharts* using an RCNN pipeline, allowing users to edit them within the app and receive explanations.
+- Capturing pictures of *electrical and logic circuits* and simulating them virtually in the app.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Closing Thoughts
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Don’t let disabilities stop you from becoming who you want to be. *Mithran* will be your companion throughout your journey.
