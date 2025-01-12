@@ -154,12 +154,7 @@ const ExplainModal = ({ visible, setVisible, content, setContent }) => {
             onPress={playText}
             disabled={isPlaying}
           />
-          <FAB
-            icon="pause"
-            style={styles.fab}
-            onPress={pauseText}
-            disabled={!isPlaying}
-          />
+          
           <FAB
             icon="stop"
             style={styles.fab}
@@ -231,6 +226,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#666",
   },
+  fabContainer:{
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop: 20,
+  },
+  
 });
 
 export default NotePage;
