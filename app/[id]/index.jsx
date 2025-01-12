@@ -110,7 +110,7 @@ const ExplainModal = ({ visible, setVisible, content, setContent }) => {
       target: language,
       text: content,
     });
-    setContent(response.data.translated_text);
+    setContent(response.data.translated_text[0]);
     setLoading(false);
   };
 
@@ -143,7 +143,7 @@ const ExplainModal = ({ visible, setVisible, content, setContent }) => {
         contentContainerStyle={containerStyle}
       >
         <ScrollView>
-          <Markdown>{content}</Markdown>
+        {content ? <Markdown>{content}</Markdown> : <Text>No content available</Text>}
         </ScrollView>
         <Button onPress={translate}>Translate!</Button>
 
@@ -173,6 +173,7 @@ const ExplainModal = ({ visible, setVisible, content, setContent }) => {
 };
 
 const SaveChanges = ({ snack, setSnack, content, id }) => {
+  const { setLoading } = useFontSettings();
   const save = async () => {
     setLoading(true);
     const response = await db.put(`/noteUpdate/${id}`, {
@@ -187,9 +188,7 @@ const SaveChanges = ({ snack, setSnack, content, id }) => {
       onDismiss={() => setSnack(false)}
       action={{
         label: "Save",
-        onPress: () => {
-          save();
-        },
+        onPress: save,
       }}
       style={styles.snackbar}
     >
