@@ -1,5 +1,5 @@
 import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FAB, Button, TextInput, Modal, Portal } from 'react-native-paper';
 import { StyleSheet, Text, TouchableOpacity, View, Image, Dimensions } from 'react-native';
 import db from '@/api/api';
@@ -13,6 +13,10 @@ export default function CameraScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
+
+  useEffect(() => {
+    requestPermission();
+  })
 
   if (!permission) {
     return <View />;
