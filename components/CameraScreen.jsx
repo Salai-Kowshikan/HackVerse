@@ -31,7 +31,7 @@ export default function CameraScreen() {
     return (
       <View style={styles.container}>
         <Text style={styles.message}>We need your permission to show the camera</Text>
-        <Button onPress={requestPermission} title="Grant Permission" />
+        <Button onPress={requestPermission} title="Grant Permission"> Give permissions</Button>
       </View>
     );
   }
