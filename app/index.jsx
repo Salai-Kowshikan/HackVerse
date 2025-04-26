@@ -1,8 +1,6 @@
 import { useFontSettings } from "@/components/FontContext";
 import Navbarbottom from "@/components/Navbarbottom";
 import { useEffect } from "react";
-import Navbarheader from "@/components/Navbarheader";
-import Loader from "@/components/Loader";
 
 export default function Index() {
   const { setLoading } = useFontSettings();
@@ -16,8 +14,6 @@ export default function Index() {
 
   return (
     <>
-      <Navbarheader />
-      <Loader />
       <Navbarbottom />
     </>
   );

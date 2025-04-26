@@ -1,6 +1,8 @@
 import { Stack } from "expo-router";
 import { PaperProvider } from "react-native-paper";
 import { FontProvider } from "@/components/FontContext";
+import Navbarheader from "@/components/Navbarheader";
+import Loader from "@/components/Loader";
 
 const theme = {
   colors: {
@@ -52,6 +54,8 @@ function RootLayout() {
     <>
       <FontProvider>
         <PaperProvider theme={theme}>
+          <Navbarheader />
+          <Loader />
           <Stack screenOptions={{ headerShown: false }} />
         </PaperProvider>
       </FontProvider>
